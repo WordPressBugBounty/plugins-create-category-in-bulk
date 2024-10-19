@@ -3,7 +3,7 @@
  * Plugin Name: Bulk Post Category Creator
  * Plugin URI: https://kartechify.com/product/create-category-in-bulk/
  * Description: This plugin allows you to create multiple post categories in one go.
- * Version: 1.6
+ * Version: 1.7
  * Author: Kartik Parmar
  * Author URI: https://twitter.com/kartikparmar19
  * Requires PHP: 7.3
@@ -30,11 +30,43 @@ if ( ! class_exists( 'BWCC_Bulk_WordPress_Category_Creator' ) ) {
 		 * BWCC_Bulk_WordPress_Category_Creator Constructor
 		 */
 		public function __construct() {
+
+			$this->define_constants();
 			add_action( 'admin_menu', array( $this, 'bwcc_category_creator_menu' ) );
 			// Language Translation.
 			add_action( 'init', array( &$this, 'bwcc_update_po_file' ) );
 
 			add_action( 'admin_enqueue_scripts', array( $this, 'bwcc_enqueue_scripts' ) );
+			// Settings link on plugins page.
+			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( &$this, 'bwcc_plugin_settings_link' ) );
+		}
+
+		/**
+		 * Create Biulk Categories link on Plugins page
+		 *
+		 * @param array $links Exisiting Links present on Plugins information section.
+		 *
+		 * @return array Modified array containing the settings link added
+		 *
+		 * @since 1.7
+		 */
+		public function bwcc_plugin_settings_link( $links ) {
+
+			$settings_text            = __( 'Create Bulk Categories', 'bwcc-bulk-wordpress-category-creator' );
+			$setting_link['settings'] = '<a href="' . esc_url( get_admin_url( null, 'edit.php?page=bulk_wordpress_category_creator' ) ) . '">' . $settings_text . '</a>';
+			$links                    = $setting_link + $links;
+			return $links;
+		}
+
+		/**
+		 * Constants
+		 *
+		 * @since 1.7
+		 */
+		public function define_constants() {
+			if ( ! defined( 'BWCC_POST_VERSION' ) ) {
+				define( 'BWCC_POST_VERSION', '1.7' );
+			}
 		}
 
 		/**
@@ -49,7 +81,7 @@ if ( ! class_exists( 'BWCC_Bulk_WordPress_Category_Creator' ) ) {
 					'bwcc-woocommerce_admin_styles',
 					plugins_url() . '/woocommerce/assets/css/admin.css',
 					'',
-					'1.6',
+					BWCC_POST_VERSION,
 					false
 				);
 
@@ -57,7 +89,7 @@ if ( ! class_exists( 'BWCC_Bulk_WordPress_Category_Creator' ) ) {
 					'select2',
 					plugins_url() . '/woocommerce/assets/js/select2/select2.min.js',
 					array( 'jquery', 'jquery-ui-widget', 'jquery-ui-core' ),
-					'1.6',
+					BWCC_POST_VERSION,
 					false
 				);
 
@@ -67,7 +99,7 @@ if ( ! class_exists( 'BWCC_Bulk_WordPress_Category_Creator' ) ) {
 					'bulk-wordpress-category-creator',
 					plugins_url() . '/create-category-in-bulk/js/bulk-wordpress-category-creator.js',
 					array( 'jquery', 'select2' ),
-					'1.6',
+					BWCC_POST_VERSION,
 					false
 				);
 			}

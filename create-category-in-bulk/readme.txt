@@ -2,9 +2,9 @@
 Contributors: kartikparmar, kartechify
 Donate link: https://www.paypal.me/kartikparmar
 Author URI: https://parmarkartik19.wordpress.com/
-Tags: wordpress post category, bulk post categories, post category creator, add post categories, post categories bulk
+Tags: posts-category, bulk-categories, posts, categories, bulk
 Requires at least: 4.0
-Tested up to: 6.2
+Tested up to: 6.6
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,13 +15,13 @@ This easy-to-use plugin allows to create post categories in bulk and assign thos
 
 This plugin allows to create post categories in bulk and assign those categories to posts at the same time.
 
-To create multiple categoried you just have to enter categories separated by commas in 'Enter categories separated by commas' field. 
+To create multiple categorised you just have to enter categories separated by commas in 'Enter categories separated by commas' field. 
 
 You can also create the categories as child by selecting parent category in 'Parent Category' dropdown.
 
 The Description field is also available to set description for the categories which you will be creating.
 
-The main feature of the plugin is, you can select multiple posts in 'Select Posts' option and created caregories will get assigned to those selected posts.
+The main feature of the plugin is, you can select multiple posts in 'Select Posts' option and created categories will get assigned to those selected posts.
 
 ### Some of our other free plugins
 
@@ -68,6 +68,10 @@ Method 2:
 1. Screenshot 1
 
 == Changelog ==
+
+= 1.7 (20.10.2024) =
+
+* WordPress v6.6.2 Compatibility.
 
 = 1.6 (08.07.2023) =
 
